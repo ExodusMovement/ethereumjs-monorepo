@@ -227,15 +227,12 @@ export class BlockHeader {
       }
     }
 
-    if (this._common.hardfork === Hardfork.Merge) {
+    if (this._common.isActivatedEIP(3675)) {
       uncleHash = keccak256(rlp.encode([]))
       difficulty = new BN(0)
       extraData = rlp.encode("b''")
-      mixHash = Buffer.from(
-        '0000000000000000000000000000000000000000000000000000000000000000',
-        'hex'
-      )
-      nonce = Buffer.from('0000000000000000', 'hex')
+      mixHash = zeros(32)
+      nonce = zeros(8)
     }
 
     if (options.initWithGenesisHeader) {
@@ -246,13 +243,13 @@ export class BlockHeader {
       if (timestamp.isZero()) {
         timestamp = new BN(toBuffer(this._common.genesis().timestamp))
       }
-      if (difficulty.isZero() && this._common.hardfork !== Hardfork.Merge) {
+      if (difficulty.isZero() && this._common.isActivatedEIP(3675)) {
         difficulty = new BN(toBuffer(this._common.genesis().difficulty))
       }
-      if (extraData.length === 0 && this._common.hardfork !== Hardfork.Merge) {
+      if (extraData.length === 0 && this._common.isActivatedEIP(3675)) {
         extraData = toBuffer(this._common.genesis().extraData)
       }
-      if (nonce.equals(zeros(8)) && this._common.hardfork !== Hardfork.Merge) {
+      if (nonce.equals(zeros(8)) && this._common.isActivatedEIP(3675)) {
         nonce = toBuffer(this._common.genesis().nonce)
       }
       if (stateRoot.equals(zeros(32))) {

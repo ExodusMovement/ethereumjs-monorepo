@@ -15,7 +15,7 @@ function createBlock(
   common?: Common
 ): Block {
   common = common ?? new Common({ chain: Chain.Mainnet })
-  if (common.hardfork === Hardfork.Merge) {
+  if (common.isActivatedEIP(3675)) {
     uncles = []
   } else {
     uncles = uncles ?? []
