@@ -58,7 +58,6 @@ export enum Hardfork {
   MuirGlacier = 'muirGlacier',
   Berlin = 'berlin',
   London = 'london',
-  Merge = 'merge',
 }
 
 interface BaseOpts {
