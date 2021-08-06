@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 (modification: no type change headlines) and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 3.5.0 - 2021-08-05
+
+### Block Construction Preparation for The Merge
+
+This release implements the constants block fields (`ommersHash`, `uncles`, `difficulty`, `extraData`, `mixHash`, `nonce`) in preparation for The Merge hard fork (EIP-3675).
+
 ## 3.4.0 - 2021-07-08
 
 ### Finalized London HF Support
