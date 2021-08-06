@@ -10,7 +10,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ### Add Support for EIP-3675 (The Merge)
 
-This release adds EIP-3675 (The Merge) to the list of supported EIPs.
+This release adds EIP-3675 (The Merge) to the list of supported EIPs, PR [#1393](https://github.com/ethereumjs/ethereumjs-monorepo/pull/1393)
 
 ## 2.4.0 - 2021-07-08
 
