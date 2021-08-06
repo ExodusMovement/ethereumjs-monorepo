@@ -12,13 +12,9 @@
     "node": ">=10.0.0"
   },
   "files": [
-    "dist",
-    "dist.browser",
-    "src"
+    "dist/**/*.js"
   ],
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "browser": "dist.browser/index.js",
   "scripts": {
     "build": "../../config/cli/ts-build.sh",
     "prepublishOnly": "npm run clean && npm run build && npm run test",
@@ -27,7 +23,7 @@
     "docs:build": "npx typedoc --options typedoc.js",
     "lint": "../../config/cli/lint.sh",
     "lint:fix": "../../config/cli/lint-fix.sh",
-    "test": "npm run test:node && npm run test:browser",
+    "test": "npm run test:node",
     "test:browser": "karma start karma.conf.js",
     "test:node": "tape -r ts-node/register test/*.spec.ts",
     "tsc": "../../config/cli/ts-compile.sh"

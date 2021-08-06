@@ -13,13 +13,9 @@
     "bootstrap"
   ],
   "files": [
-    "dist",
-    "dist.browser",
-    "src"
+    "dist/**/*.js"
   ],
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "browser": "dist.browser/index.js",
   "scripts": {
     "build": "../../config/cli/ts-build.sh",
     "prepublishOnly": "npm run clean && npm run build && npm run test",
@@ -31,7 +27,7 @@
     "lint": "../../config/cli/lint.sh",
     "lint:fix": "../../config/cli/lint-fix.sh",
     "tape": "tape -r ts-node/register",
-    "test": "npm run test:node && npm run test:browser",
+    "test": "npm run test:node",
     "test:node": "tape -r ts-node/register ./tests/*.spec.ts",
     "test:browser": "karma start karma.conf.js",
     "docs:build": "typedoc --options typedoc.js"
