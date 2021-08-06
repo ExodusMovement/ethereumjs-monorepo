@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 (modification: no type change headlines) and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.4.1 - 2021-08-05
+
+### Add Support for EIP-3675 (The Merge)
+
+This release adds EIP-3675 (The Merge) to the list of supported EIPs.
+
 ## 2.4.0 - 2021-07-08
 
 ### Finalized London HF Support
