@@ -40,6 +40,11 @@ tape('The Merge tests', function (t) {
     st.end()
   })
 
+  t.test('should return that EIP 3675 is activated', function (st) {
+    st.ok(common.isActivatedEIP(3675))
+    st.end()
+  })
+
   t.test('should override custom blocks fields with post-merge constants', function (st) {
     // Building a header with random values for constants
     const header = BlockHeader.fromHeaderData(
