@@ -1,5 +1,5 @@
-import Common from '@ethereumjs/common'
-import { bufferToHex, setLengthLeft, toBuffer } from 'ethereumjs-util'
+import Common from '@exodus/ethereumjs-common'
+import { bufferToHex, setLengthLeft, toBuffer } from '@exodus/ethereumjs-util'
 import { AccessList, AccessListBuffer, AccessListItem, isAccessList } from './types'
 
 export class AccessLists {

@@ -7,10 +7,10 @@ import {
   rlphash,
   toBuffer,
   unpadBuffer,
-} from 'ethereumjs-util'
+} from '@exodus/ethereumjs-util'
 import { TxOptions, TxData, JsonTx, N_DIV_2, TxValuesArray, Capability } from './types'
 import { BaseTransaction } from './baseTransaction'
-import Common from '@ethereumjs/common'
+import Common from '@exodus/ethereumjs-common'
 
 const TRANSACTION_TYPE = 0
 
@@ -196,7 +196,7 @@ export default class Transaction extends BaseTransaction<Transaction> {
    * and you might need to do yourself with:
    *
    * ```javascript
-   * import { rlp } from 'ethereumjs-util'
+   * import { rlp } from '@exodus/ethereumjs-util'
    * const message = tx.getMessageToSign(false)
    * const serializedMessage = rlp.encode(message) // use this for the HW wallet input
    * ```

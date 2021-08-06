@@ -6,8 +6,8 @@ import {
   keccak256,
   rlp,
   toBuffer,
-} from 'ethereumjs-util'
-import Common from '@ethereumjs/common'
+} from '@exodus/ethereumjs-util'
+import Common from '@exodus/ethereumjs-common'
 import { BaseTransaction } from './baseTransaction'
 import {
   AccessList,

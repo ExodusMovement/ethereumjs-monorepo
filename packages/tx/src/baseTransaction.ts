@@ -1,4 +1,4 @@
-import Common, { Chain, Hardfork } from '@ethereumjs/common'
+import Common, { Chain, Hardfork } from '@exodus/ethereumjs-common'
 import {
   Address,
   BN,
@@ -9,7 +9,7 @@ import {
   ecsign,
   publicToAddress,
   BNLike,
-} from 'ethereumjs-util'
+} from '@exodus/ethereumjs-util'
 import {
   TxData,
   JsonTx,
