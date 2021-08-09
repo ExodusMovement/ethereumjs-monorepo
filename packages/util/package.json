@@ -1,6 +1,6 @@
 {
   "name": "@exodus/ethereumjs-util",
-  "version": "7.1.0-exodus.1",
+  "version": "7.1.0-exodus.2",
   "description": "A collection of utility functions for Ethereum",
   "license": "MPL-2.0",
   "author": "mjbecze <mjbecze@gmail.com>",

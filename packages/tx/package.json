@@ -1,6 +1,6 @@
 {
   "name": "@exodus/ethereumjs-tx",
-  "version": "3.3.0-exodus.1",
+  "version": "3.3.0-exodus.2",
   "description": "A simple module for creating, manipulating and signing Ethereum transactions",
   "license": "MPL-2.0",
   "author": "mjbecze <mb@ethdev.com>",
@@ -28,8 +28,8 @@
     "test:browser": "karma start karma.conf.js"
   },
   "dependencies": {
-    "@exodus/ethereumjs-common": "^2.4.0",
-    "@exodus/ethereumjs-util": "^7.1.0"
+    "@exodus/ethereumjs-common": "^2.4.0-exodus.2",
+    "@exodus/ethereumjs-util": "^7.1.0-exodus.2"
   },
   "devDependencies": {
     "@types/minimist": "^1.2.0",
