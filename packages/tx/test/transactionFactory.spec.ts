@@ -1,4 +1,4 @@
-import Common, { Chain, Hardfork } from '@ethereumjs/common'
+import Common, { Chain, Hardfork } from '@exodus/ethereumjs-common'
 import { BN } from 'ethereumjs-util'
 import tape from 'tape'
 import {
