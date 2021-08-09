@@ -1,6 +1,7 @@
 // Compatible with https://www.npmjs.com/package/ethereum-cryptography
 
-import { default as createKeccakHash, KeccakAlgorithm } from 'keccak';
+/// <reference path="forked-modules.d.ts"/>
+import { default as createKeccakHash, KeccakAlgorithm } from '@exodus/keccak';
 
 function createHashFunction(algorithm: KeccakAlgorithm): (msg: Buffer) => Buffer {
   return msg => {

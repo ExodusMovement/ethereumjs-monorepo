@@ -29,12 +29,12 @@
     "tsc": "../../config/cli/ts-compile.sh"
   },
   "dependencies": {
+    "@exodus/keccak": "^3.0.1-exodus.0",
+    "@exodus/secp256k1": "^4.0.2-exodus.0",
     "bn.js": "^5.1.2",
     "create-hash": "^1.1.2",
     "ethjs-util": "0.1.6",
-    "keccak": "^3.0.0",
-    "rlp": "^2.2.4",
-    "secp256k1": "^4.0.1"
+    "rlp": "^2.2.4"
   },
   "devDependencies": {
     "@types/assert": "^1.5.4",

@@ -1,4 +1,5 @@
-import { ecdsaSign, ecdsaRecover, publicKeyConvert } from 'secp256k1'
+/// <reference path="forked-modules.d.ts"/>
+import { ecdsaSign, ecdsaRecover, publicKeyConvert } from '@exodus/secp256k1'
 import BN from 'bn.js'
 import { toBuffer, setLengthLeft, bufferToHex, bufferToInt } from './bytes'
 import { keccak } from './hash'

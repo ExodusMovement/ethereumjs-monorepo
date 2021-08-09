@@ -1,12 +1,13 @@
 import assert from 'assert'
 import BN from 'bn.js'
 import * as rlp from 'rlp'
+/// <reference path="forked-modules.d.ts"/>
 import {
   privateKeyVerify,
   publicKeyCreate,
   publicKeyVerify,
   publicKeyConvert,
-} from 'secp256k1'
+} from '@exodus/secp256k1'
 import { stripHexPrefix } from 'ethjs-util'
 import { KECCAK256_RLP, KECCAK256_NULL } from './constants'
 import { zeros, bufferToHex, toBuffer } from './bytes'
