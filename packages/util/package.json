@@ -29,7 +29,6 @@
     "tsc": "../../config/cli/ts-compile.sh"
   },
   "dependencies": {
-    "@types/bn.js": "^5.1.0",
     "bn.js": "^5.1.2",
     "create-hash": "^1.1.2",
     "ethjs-util": "0.1.6",
@@ -39,6 +38,7 @@
   },
   "devDependencies": {
     "@types/assert": "^1.5.4",
+    "@types/bn.js": "^5.1.0",
     "@types/keccak": "^3.0.1",
     "@types/node": "^11.13.4",
     "@types/secp256k1": "^4.0.1",
