@@ -13,6 +13,7 @@
     "bootstrap"
   ],
   "files": [
+    "dist/**/*.json",
     "dist/**/*.js"
   ],
   "main": "dist/index.js",
