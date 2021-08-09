@@ -1,6 +1,6 @@
 {
   "name": "@exodus/ethereumjs-common",
-  "version": "2.4.0-exodus.3",
+  "version": "2.4.0-exodus.4",
   "description": "Resources common to all Ethereum implementations",
   "license": "MIT",
   "keywords": [
@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "crc-32": "^1.2.0",
-    "@exodus/ethereumjs-util": "^7.1.0-exodus.3"
+    "@exodus/ethereumjs-util": "^7.1.0-exodus.4"
   },
   "devDependencies": {
     "@types/node": "^11.13.4",
