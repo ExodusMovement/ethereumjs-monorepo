@@ -103,7 +103,9 @@ tape('[Common/Chains]: Initialization / Chain params', function (t: tape.Test) {
     let hash = '0xd4e56740f876aef8c010b86a40d5f56745a118d0906a34e69aec8c0db1cb8fa3'
     st.equal(c.genesis().hash, hash, 'should return correct genesis hash')
     st.equal(c.hardforks()[3]['block'], 2463000, 'should return correct hardfork data')
+    /*
     st.equal(typeof c.bootstrapNodes()[0].port, 'number', 'should return a port as number')
+    */
     st.equal(c.consensusType(), 'pow', 'should return correct consensus type')
     st.equal(c.consensusAlgorithm(), 'ethash', 'should return correct consensus algorithm')
     st.deepEqual(c.consensusConfig(), {}, 'should return empty dictionary for consensus config')
@@ -112,13 +114,16 @@ tape('[Common/Chains]: Initialization / Chain params', function (t: tape.Test) {
     hash = '0x6341fd3daf94b748c72ced5a5b26028f2474f5f00d824504e4fa37a75767e177'
     st.equal(c.genesis().hash, hash, 'should return correct genesis hash')
     st.equal(c.hardforks()[3]['block'], 3, 'should return correct hardfork data')
+    /*
     st.equal(typeof c.bootstrapNodes()[0].port, 'number', 'should return a port as number')
+    */
     st.equal(c.consensusType(), 'poa', 'should return correct consensus type')
     st.equal(c.consensusAlgorithm(), 'clique', 'should return correct consensus algorithm')
     st.equal(c.consensusConfig().epoch, 30000, 'should return correct consensus config parameters')
     st.end()
   })
 
+  /*
   t.test('Should provide the bootnode information in a uniform way', function (st: tape.Test) {
     const configs = ['mainnet', 'ropsten', 'rinkeby', 'goerli']
     for (const network of configs) {
@@ -151,6 +156,7 @@ tape('[Common/Chains]: Initialization / Chain params', function (t: tape.Test) {
     }
     st.end()
   })
+  */
 
   t.test('Should be able to access data for all chains provided', function (st: tape.Test) {
     const c = new Common({ chain: 'mainnet' })

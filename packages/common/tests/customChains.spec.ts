@@ -21,7 +21,9 @@ tape('[Common]: Custom chains', function (t: tape.Test) {
         'should return correct genesis hash'
       )
       st.equal(c.hardforks()[3]['block'], 3, 'should return correct hardfork data')
+      /*
       st.equal(c.bootstrapNodes()[1].ip, '10.0.0.2', 'should return a bootstrap node array')
+      */
 
       st.end()
     }
@@ -59,7 +61,9 @@ tape('[Common]: Custom chains', function (t: tape.Test) {
 
     // Fallback params from mainnet
     st.equal(customChainCommon.genesis(), mainnetCommon.genesis())
+    /*
     st.equal(customChainCommon.bootstrapNodes(), mainnetCommon.bootstrapNodes())
+    */
     st.equal(customChainCommon.hardforks(), mainnetCommon.hardforks())
 
     // Set only to this Common
@@ -121,7 +125,9 @@ tape('[Common]: Custom chains', function (t: tape.Test) {
 
     // Fallback params from mainnet
     st.equal(customChainCommon.genesis(), mainnetCommon.genesis())
+    /*
     st.equal(customChainCommon.bootstrapNodes(), mainnetCommon.bootstrapNodes())
+    */
     st.equal(customChainCommon.hardforks(), mainnetCommon.hardforks())
 
     // Set only to this Common
