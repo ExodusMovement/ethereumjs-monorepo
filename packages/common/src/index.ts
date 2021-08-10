@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events'
 import { buf as crc32Buffer } from 'crc-32'
-import { BN, BNLike, toType, TypeOutput, intToBuffer } from 'ethereumjs-util'
+import { BN, BNLike, toType, TypeOutput, intToBuffer } from '@exodus/ethereumjs-util'
 import { _getInitializedChains } from './chains'
 import { hardforks as HARDFORK_CHANGES } from './hardforks'
 import { EIPs } from './eips'
