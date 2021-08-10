@@ -9,7 +9,7 @@ import {
 } from '../src'
 import { TxsJsonEntry } from './types'
 import { BaseTransaction } from '../src/baseTransaction'
-import { privateToPublic, BN, toBuffer } from 'ethereumjs-util'
+import { privateToPublic, BN, toBuffer } from '@exodus/ethereumjs-util'
 
 tape('[BaseTransaction]', function (t) {
   // EIP-2930 is not enabled in Common by default (2021-03-06)

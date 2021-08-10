@@ -1,5 +1,5 @@
 import Common, { Chain, Hardfork } from '@exodus/ethereumjs-common'
-import { Address, BN, bufferToHex, privateToAddress } from 'ethereumjs-util'
+import { Address, BN, bufferToHex, privateToAddress } from '@exodus/ethereumjs-util'
 import tape from 'tape'
 import {
   AccessList,

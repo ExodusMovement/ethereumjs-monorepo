@@ -1,6 +1,6 @@
 import tape from 'tape'
 import { Buffer } from 'buffer'
-import { BN, rlp, toBuffer, bufferToHex, intToBuffer, unpadBuffer } from 'ethereumjs-util'
+import { BN, rlp, toBuffer, bufferToHex, intToBuffer, unpadBuffer } from '@exodus/ethereumjs-util'
 import Common, { Chain, Hardfork } from '@exodus/ethereumjs-common'
 import { Transaction, TxData } from '../src'
 import { TxsJsonEntry, VitaliksTestsDataEntry } from './types'

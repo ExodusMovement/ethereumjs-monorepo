@@ -1,5 +1,5 @@
 import tape from 'tape'
-import { BN } from 'ethereumjs-util'
+import { BN } from '@exodus/ethereumjs-util'
 import Common, { Chain, Hardfork } from '../src'
 
 tape('[Common]: Hardfork logic', function (t: tape.Test) {
