@@ -16,6 +16,7 @@ if (argv.b) {
 } else if (argv.a) {
   // All manual API tests
   require('./base.spec')
+  require('./signer.spec')
   require('./legacy.spec')
   require('./typedTxsAndEIP2930.spec')
   require('./eip1559.spec')
@@ -23,6 +24,7 @@ if (argv.b) {
 } else {
   require('./transactionRunner')
   require('./base.spec')
+  require('./signer.spec')
   require('./legacy.spec')
   require('./typedTxsAndEIP2930.spec')
   require('./eip1559.spec')
