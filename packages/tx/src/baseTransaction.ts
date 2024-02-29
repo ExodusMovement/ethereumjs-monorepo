@@ -267,12 +267,12 @@ export abstract class BaseTransaction<TransactionObject> {
    * const signedTx = tx.sign(privateKey)
    * ```
    */
-  sign(privateKeyOrSigner: Buffer | Signer): TransactionObject {
-    let sign: (hash: Buffer) => ReturnType<typeof ecsign>
+  async sign(privateKeyOrSigner: Buffer | Signer): Promise<TransactionObject> {
+    let sign: (hash: Buffer) => Promise<ReturnType<typeof ecsign>>
 
     if (privateKeyOrSigner instanceof Buffer) {
       assert(privateKeyOrSigner.length === 32, 'Private key must be 32 bytes in length.')
-      sign = (msgHash) => ecsign(msgHash, privateKeyOrSigner)
+      sign = async (msgHash) => ecsign(msgHash, privateKeyOrSigner)
     } else {
       sign = (msgHash) => privateKeyOrSigner(msgHash).then(splitSignature)
     }
@@ -292,7 +292,7 @@ export abstract class BaseTransaction<TransactionObject> {
     }
 
     const msgHash = this.getMessageToSign(true)
-    const { v, r, s } = sign(msgHash)
+    const { v, r, s } = await sign(msgHash)
     const tx = this._processSignature(v, r, s)
 
     // Hack part 2
