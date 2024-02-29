@@ -270,3 +270,5 @@ export const N_DIV_2 = new BN(
   '7fffffffffffffffffffffffffffffff5d576e7357a4501ddfe92f46681b20a0',
   16
 )
+
+export type Signer = (msgHash: Buffer) => Promise<{ signature: Uint8Array; recid: number }>

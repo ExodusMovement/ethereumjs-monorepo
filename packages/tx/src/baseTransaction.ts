@@ -20,7 +20,9 @@ import {
   FeeMarketEIP1559TxData,
   TxValuesArray,
   Capability,
+  Signer,
 } from './types'
+import { assert } from './util'
 
 /**
  * This base class will likely be subject to further
@@ -265,9 +267,14 @@ export abstract class BaseTransaction<TransactionObject> {
    * const signedTx = tx.sign(privateKey)
    * ```
    */
-  sign(privateKey: Buffer): TransactionObject {
-    if (privateKey.length !== 32) {
-      throw new Error('Private key must be 32 bytes in length.')
+  sign(privateKeyOrSigner: Buffer | Signer): TransactionObject {
+    let sign: (hash: Buffer) => ReturnType<typeof ecsign>
+
+    if (privateKeyOrSigner instanceof Buffer) {
+      assert(privateKeyOrSigner.length === 32, 'Private key must be 32 bytes in length.')
+      sign = (msgHash) => ecsign(msgHash, privateKeyOrSigner)
+    } else {
+      sign = (msgHash) => privateKeyOrSigner(msgHash).then(splitSignature)
     }
 
     // Hack for the constellation that we have got a legacy tx after spuriousDragon with a non-EIP155 conforming signature
@@ -285,7 +292,7 @@ export abstract class BaseTransaction<TransactionObject> {
     }
 
     const msgHash = this.getMessageToSign(true)
-    const { v, r, s } = ecsign(msgHash, privateKey)
+    const { v, r, s } = sign(msgHash)
     const tx = this._processSignature(v, r, s)
 
     // Hack part 2
@@ -297,54 +304,6 @@ export abstract class BaseTransaction<TransactionObject> {
     }
 
     return tx
-  }
-
-  /**
-   * Signs a transaction.
-   *
-   * Note that the signed tx is returned as a new object,
-   * use as follows:
-   * ```javascript
-   * const signer = (buffer: Buffer): Promise<{ signature, recid }>
-   * const signedTx = await tx.sign(signer)
-   * ```
-   */
-  signWithSigner(
-    signer: (msgHash: Buffer) => Promise<{ signature: Uint8Array; recid: number }>
-  ): Promise<TransactionObject> {
-    // Hack for the constellation that we have got a legacy tx after spuriousDragon with a non-EIP155 conforming signature
-    // and want to recreate a signature (where EIP155 should be applied)
-    // Leaving this hack lets the legacy.spec.ts -> sign(), verifySignature() test fail
-    // 2021-06-23
-    let hackApplied = false
-    if (
-      this.type === 0 &&
-      this.common.gteHardfork('spuriousDragon') &&
-      !this.supports(Capability.EIP155ReplayProtection)
-    ) {
-      this.activeCapabilities.push(Capability.EIP155ReplayProtection)
-      hackApplied = true
-    }
-
-    const msgHash = this.getMessageToSign(true)
-
-    const _processSignature = ({ signature, recid }: { signature: any; recid: number }) => {
-      const { r, s, v } = splitSignature(signature, recid)
-
-      const tx = this._processSignature(v, r, s)
-
-      // Hack part 2
-      if (hackApplied) {
-        const index = this.activeCapabilities.indexOf(Capability.EIP155ReplayProtection)
-        if (index > -1) {
-          this.activeCapabilities.splice(index, 1)
-        }
-      }
-
-      return tx
-    }
-
-    return signer(msgHash).then(({ signature, recid }) => _processSignature({ signature, recid }))
   }
 
   /**

@@ -100,3 +100,9 @@ export class AccessLists {
     return addresses * accessListAddressCost + slots * accessListStorageKeyCost
   }
 }
+
+export function assert(condition: boolean, message: string) {
+  if (!condition) {
+    throw new Error(message)
+  }
+}
