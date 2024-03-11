@@ -26,7 +26,21 @@ export function ecsign(msgHash: Buffer, privateKey: Buffer, chainId?: number): E
 export function ecsign(msgHash: Buffer, privateKey: Buffer, chainId: BNLike): ECDSASignatureBuffer
 export function ecsign(msgHash: Buffer, privateKey: Buffer, chainId: any): any {
   const { signature, recid: recovery } = ecdsaSign(msgHash, privateKey)
+  return splitSignature(signature, recovery, chainId)
+}
 
+/* eslint-disable no-redeclare */
+export function splitSignature(
+  signature: Uint8Array,
+  recovery: number,
+  chainId?: number
+): ECDSASignature
+export function splitSignature(
+  signature: Uint8Array,
+  recovery: number,
+  chainId: BNLike
+): ECDSASignatureBuffer
+export function splitSignature(signature: Uint8Array, recovery: number, chainId: any): Object {
   const r = Buffer.from(signature.slice(0, 32))
   const s = Buffer.from(signature.slice(32, 64))
 
