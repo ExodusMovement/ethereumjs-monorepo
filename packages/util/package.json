@@ -34,11 +34,12 @@
     "@noble/secp256k1": "^1.7.1",
     "bn.js": "^5.1.2",
     "ethjs-util": "0.1.6",
+    "minimalistic-assert": "^1.0.1",
     "rlp": "^2.2.4"
   },
   "devDependencies": {
-    "@types/assert": "^1.5.4",
     "@types/bn.js": "^5.1.0",
+    "@types/minimalistic-assert": "^1.0.3",
     "@types/node": "^11.13.4",
     "@types/tape": "^4.13.0",
     "eslint": "^6.8.0",

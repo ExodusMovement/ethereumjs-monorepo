@@ -1,4 +1,4 @@
-import assert from 'assert'
+import assert from 'minimalistic-assert'
 import BN from 'bn.js'
 import { toBuffer, zeros } from './bytes'
 import {

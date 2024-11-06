@@ -1,4 +1,4 @@
-import assert from 'assert'
+import assert from 'minimalistic-assert'
 import BN from 'bn.js'
 import * as rlp from 'rlp'
 import * as secp256k1 from '@noble/secp256k1'

@@ -1,4 +1,4 @@
-import assert from 'assert'
+import assert from 'minimalistic-assert'
 import * as ethjsUtil from 'ethjs-util'
 import * as rlp from 'rlp'
 import { toBuffer, baToJSON, unpadBuffer } from './bytes'
