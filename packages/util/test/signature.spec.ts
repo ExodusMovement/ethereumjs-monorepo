@@ -12,6 +12,14 @@ import {
   intToBuffer,
 } from '../src'
 
+/// <reference path="../src/forked-modules.d.ts"/>
+import { hmacSync } from '@exodus/crypto/hmac'
+import * as secp256k1 from '@noble/secp256k1'
+
+if (!secp256k1.utils.hmacSha256Sync) {
+  secp256k1.utils.hmacSha256Sync = (key, ...msgs) => hmacSync('sha256', key, msgs, 'uint8')
+}
+
 const echash = Buffer.from(
   '82ff40c0a986c6a5cfad4ddf4c3aa6996f1a7837f9c398e17e5de5cbd5a12b28',
   'hex'

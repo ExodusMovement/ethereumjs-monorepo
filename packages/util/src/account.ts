@@ -1,13 +1,7 @@
 import assert from 'assert'
 import BN from 'bn.js'
 import * as rlp from 'rlp'
-/// <reference path="forked-modules.d.ts"/>
-import {
-  privateKeyVerify,
-  publicKeyCreate,
-  publicKeyVerify,
-  publicKeyConvert,
-} from '@exodus/secp256k1'
+import * as secp256k1 from '@noble/secp256k1'
 import { stripHexPrefix } from 'ethjs-util'
 import { KECCAK256_RLP, KECCAK256_NULL } from './constants'
 import { zeros, bufferToHex, toBuffer } from './bytes'
@@ -224,11 +218,23 @@ export const generateAddress2 = function (from: Buffer, salt: Buffer, initCode: 
   return address.slice(-20)
 }
 
+function publicKeyVerify(publicKey: Buffer) {
+  assertIsBuffer(publicKey)
+  assert(publicKey.length === 33 || publicKey.length === 65)
+  try {
+    return Boolean(secp256k1.Point.fromHex(publicKey))
+  } catch {
+    return false
+  }
+}
+
 /**
  * Checks if the private key satisfies the rules of the curve secp256k1.
  */
 export const isValidPrivate = function (privateKey: Buffer): boolean {
-  return privateKeyVerify(privateKey)
+  assertIsBuffer(privateKey)
+  assert(privateKey.length === 32)
+  return secp256k1.utils.isValidPrivateKey(privateKey)
 }
 
 /**
@@ -260,7 +266,7 @@ export const isValidPublic = function (publicKey: Buffer, sanitize: boolean = fa
 export const pubToAddress = function (pubKey: Buffer, sanitize: boolean = false): Buffer {
   assertIsBuffer(pubKey)
   if (sanitize && pubKey.length !== 64) {
-    pubKey = Buffer.from(publicKeyConvert(pubKey, false).slice(1))
+    pubKey = Buffer.from(secp256k1.Point.fromHex(pubKey).toRawBytes(false).slice(1))
   }
   assert(pubKey.length === 64)
   // Only take the lower 160bits of the hash
@@ -275,7 +281,7 @@ export const publicToAddress = pubToAddress
 export const privateToPublic = function (privateKey: Buffer): Buffer {
   assertIsBuffer(privateKey)
   // skip the type flag and use the X, Y points
-  return Buffer.from(publicKeyCreate(privateKey, false)).slice(1)
+  return Buffer.from(secp256k1.getPublicKey(privateKey, false)).slice(1)
 }
 
 /**
@@ -292,7 +298,7 @@ export const privateToAddress = function (privateKey: Buffer): Buffer {
 export const importPublic = function (publicKey: Buffer): Buffer {
   assertIsBuffer(publicKey)
   if (publicKey.length !== 64) {
-    publicKey = Buffer.from(publicKeyConvert(publicKey, false).slice(1))
+    publicKey = Buffer.from(secp256k1.Point.fromHex(publicKey).toRawBytes(false).slice(1))
   }
   return publicKey
 }

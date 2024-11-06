@@ -1,4 +1,3 @@
-const Buffer = require('buffer').Buffer
 import BN from 'bn.js'
 
 /**

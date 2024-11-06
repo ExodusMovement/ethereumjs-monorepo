@@ -1,5 +1,4 @@
-/// <reference path="forked-modules.d.ts"/>
-import { ecdsaSign, ecdsaRecover, publicKeyConvert } from '@exodus/secp256k1'
+import { signSync, recoverPublicKey } from '@noble/secp256k1'
 import BN from 'bn.js'
 import { toBuffer, setLengthLeft, bufferToHex, bufferToInt } from './bytes'
 import { keccak } from './hash'
@@ -25,7 +24,7 @@ export interface ECDSASignatureBuffer {
 export function ecsign(msgHash: Buffer, privateKey: Buffer, chainId?: number): ECDSASignature
 export function ecsign(msgHash: Buffer, privateKey: Buffer, chainId: BNLike): ECDSASignatureBuffer
 export function ecsign(msgHash: Buffer, privateKey: Buffer, chainId: any): any {
-  const { signature, recid: recovery } = ecdsaSign(msgHash, privateKey)
+  const [signature, recovery] = signSync(msgHash, privateKey, { der: false, recovered: true })
   return splitSignature(signature, recovery, chainId)
 }
 
@@ -90,8 +89,8 @@ export const ecrecover = function (
   if (!isValidSigRecovery(recovery)) {
     throw new Error('Invalid signature v value')
   }
-  const senderPubKey = ecdsaRecover(signature, recovery.toNumber(), msgHash)
-  return Buffer.from(publicKeyConvert(senderPubKey, false).slice(1))
+  const senderPubKey = recoverPublicKey(msgHash, signature, recovery.toNumber(), false) // uncompressed
+  return Buffer.from(senderPubKey.slice(1))
 }
 
 /**

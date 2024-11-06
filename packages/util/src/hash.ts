@@ -1,8 +1,14 @@
-import { keccak224, keccak384, keccak256 as k256, keccak512 } from './keccak'
-const createHash = require('create-hash')
+/// <reference path="forked-modules.d.ts"/>
+import { hashSync } from '@exodus/crypto/hash'
+import { keccak_224, keccak_256, keccak_384, keccak_512 } from '@noble/hashes/sha3'
 import * as rlp from 'rlp'
 import { toBuffer, setLengthLeft } from './bytes'
 import { assertIsString, assertIsBuffer, assertIsArray, assertIsHexString } from './helpers'
+
+const keccak224 = (a: Buffer) => Buffer.from(keccak_224(a))
+const k256 = (a: Buffer) => Buffer.from(keccak_256(a))
+const keccak384 = (a: Buffer) => Buffer.from(keccak_384(a))
+const keccak512 = (a: Buffer) => Buffer.from(keccak_512(a))
 
 /**
  * Creates Keccak hash of a Buffer input
@@ -74,8 +80,7 @@ export const keccakFromArray = function (a: number[], bits: number = 256) {
  * @param  a The input data (Buffer|Array|String)
  */
 const _sha256 = function (a: any): Buffer {
-  a = toBuffer(a)
-  return createHash('sha256').update(a).digest()
+  return hashSync('sha256', toBuffer(a))
 }
 
 /**
@@ -111,8 +116,7 @@ export const sha256FromArray = function (a: number[]): Buffer {
  * @param padded Whether it should be padded to 256 bits or not
  */
 const _ripemd160 = function (a: any, padded: boolean): Buffer {
-  a = toBuffer(a)
-  const hash = createHash('rmd160').update(a).digest()
+  const hash = hashSync('ripemd160', toBuffer(a))
   if (padded === true) {
     return setLengthLeft(hash, 32)
   } else {
